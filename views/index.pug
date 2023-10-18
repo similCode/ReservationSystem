@@ -1,5 +1,11 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
+    h1= Title
+    p The library has the following record counts:
+
+    ul
+      li #[strong Users:] !{user_count}
+      li #[strong Restaurants:] !{restaurant_count}
+      li #[strong Reservations:] !{reservation_count}
+      li #[strong Comments:] !{comment_count}

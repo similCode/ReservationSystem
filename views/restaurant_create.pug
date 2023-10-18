@@ -1,0 +1,28 @@
+extends layout
+
+block content
+    h1 Nuevo Restaurante
+
+    form(action='/restaurant/create', method='post')
+        div.form-group
+            label(for='name') Name
+            input#name.form-control(type='text', name='name', required=true)
+
+        div.form-group
+            label(for='address') Address
+            input#address.form-control(type='text', name='address', required=true)
+
+        div.form-group
+            label(for='email') Email
+            input#email.form-control(type='email', name='email', required=true)
+
+        div.form-group
+            label(for='telephone') Telephone
+            input#telephone.form-control(type='telephone', name='telephone', required=true)
+
+        div.form-group
+            label(for='website') Website
+            input#website.form-control(type='text', name='website', required=true)
+
+
+        button.btn.btn-primary(type='submit') Save Client

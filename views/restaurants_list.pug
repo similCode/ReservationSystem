@@ -1,0 +1,12 @@
+extends layout
+
+block content
+    h1= 'Lista de restaurantes'
+
+    ul
+        each restaurant in allRestaurants
+            li
+                a(href='/booking'+restaurant.url) #{restaurant.name}
+
+        else
+            li There are no restaurants.
