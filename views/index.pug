@@ -1,11 +1,15 @@
 extends layout
 
 block content
-    h1= Title
-    p The library has the following record counts:
+    body
+        header
+            a(href='/signup') Sign Up
+            a(href='/login') Log In
+        h2= Title
+        p The library has the following record counts:
 
-    ul
-      li #[strong Users:] !{user_count}
-      li #[strong Restaurants:] !{restaurant_count}
-      li #[strong Reservations:] !{reservation_count}
-      li #[strong Comments:] !{comment_count}
+        ul
+          li #[strong Users:] !{user_count}
+          li #[strong Restaurants:] !{restaurant_count}
+          li #[strong Reservations:] !{reservation_count}
+          li #[strong Comments:] !{comment_count}

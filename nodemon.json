@@ -1,0 +1,5 @@
+{
+  "ext": "js,json,pug",
+  "ignore": ["public/*","node_modules/*"],
+  "verbose": true
+}

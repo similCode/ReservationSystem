@@ -1,0 +1,12 @@
+extends layout
+
+block content
+    h1= 'Give us your thougths about '+ name
+    form(action='/comment/create/'+id, method='post')
+        div.form-group
+            label(for='comment') Comment
+            input#comment.form-control(type='textarea', name='comment', required=true)
+        div.form-group
+            label(for='classification') Classification
+            input#classification.form-control(type='number', name='classification', required=true)
+        button.btn.btn-primary(type='submit') Save Booking

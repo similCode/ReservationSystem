@@ -1,0 +1,16 @@
+extends layout
+
+block content
+    h1= 'Reservacion en el restaurante '+ title
+
+    form(action='/booking/'+id, method='post')
+        div.form-group
+            label(for='people') People
+            input#people.form-control(type='text', name='people', required=true)
+        div.form-group
+            label(for='date') Date
+            input#date.form-control(type='date', name='date', required=true)
+        div.form-group
+            label(for='time') Time
+            input#time.form-control(type='time', name='time', required=true)
+        button.btn.btn-primary(type='submit') Save Booking

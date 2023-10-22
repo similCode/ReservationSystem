@@ -1,4 +1,4 @@
-const {DataTypes} = require('sequelize');
+const {DataTypes, DATE} = require('sequelize');
 const sequelize = require('../util/database');
 
 const Comment = sequelize.define('comments',{
@@ -13,8 +13,9 @@ const Comment = sequelize.define('comments',{
         allowNull: true
     },
     date: {
-        type: DataTypes.DATEONLY,
-        allowNull: true
+        type: DataTypes.DATE,
+        allowNull: true,
+        defaultValue: DataTypes.NOW,
     },
     classification: {
         type: DataTypes.ENUM('1','2','3','4','5'),

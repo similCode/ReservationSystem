@@ -1,0 +1,15 @@
+extends layout
+
+block content
+    body
+        header
+            a(href='/exit', methods='post') Close Session
+            a(href='/delete_account') Delete Account
+        h2= Title
+        p The library has the following record counts:
+
+        ul
+            li #[strong Users:] !{user_count}
+            li #[strong Restaurants:] !{restaurant_count}
+            li #[strong Reservations:] !{reservation_count}
+            li #[strong Comments:] !{comment_count}

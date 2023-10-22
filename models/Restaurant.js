@@ -10,7 +10,11 @@ const Restaurant = sequelize.define('restaurants', {
     },
     name: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: false,
+        get(){
+            const restaurantName = this.getDataValue('name');
+            return restaurantName
+        }
     },
     address: {
         type: DataTypes.STRING,
@@ -18,6 +22,7 @@ const Restaurant = sequelize.define('restaurants', {
     },
     telephone: {
         type: DataTypes.STRING,
+        isNumeric: true,
         allowNull: false
     },
     email: {
@@ -26,6 +31,7 @@ const Restaurant = sequelize.define('restaurants', {
     },
     website: {
         type: DataTypes.STRING,
+        isUrl: true,
         allowNull: false
     },
     url: {

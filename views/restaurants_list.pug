@@ -1,12 +1,15 @@
 extends layout
 
 block content
-    h1= 'Lista de restaurantes'
-
-    ul
-        each restaurant in allRestaurants
-            li
-                a(href='/booking'+restaurant.url) #{restaurant.name}
-
-        else
-            li There are no restaurants.
+    each restaurant in allRestaurants
+        .card
+            .card-header
+             h2= restaurant.name
+            .card-body
+                p Dirección: #{restaurant.address}
+                p Email: #{restaurant.email}
+                p Teléfono: #{restaurant.telephone}
+                p Sitio web: #{restaurant.website}
+            .card-footer
+                a(href='/booking/'+restaurant.id) Reservar
+                a(href='/comment/create/'+restaurant.id) Crear Comentario

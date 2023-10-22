@@ -2,72 +2,46 @@ const express = require('express');
 const router = express.Router();
 const Comment = require('../models/Comment')
 const Reservation = require('../models/Reservation')
-const Table = require("../models/Table")
 const Restaurant = require("../models/Restaurant")
 const User = require("../models/User")
 const commentController = require('../controllers/commentController');
 const userController = require('../controllers/userController');
 const reservationController = require('../controllers/reservationController');
 const restaurantController = require('../controllers/restaurantController');
-const tableController = require('../controllers/tableController');
+const requireAuth = require('../helpers/auth')
+const mainPageController = require('../controllers/mainPageController')
 
 
-/* GET home page. */
-router.get('/', async function(req, res) {
-  const [
-    user_count,
-    restaurant_count,
-    reservation_count,
-    comment_count,
-  ] = await Promise.all([
-      User.count(),
-      Restaurant.count(),
-      Reservation.count(),
-      Comment.count()
-  ]);
-  res.render('index', {
-    title: 'Este es mi sistema de reservaciones',
-    user_count: user_count,
-    restaurant_count: restaurant_count,
-    reservation_count: reservation_count,
-    comment_count: comment_count,
-  });
+//Main Page
+router.get('/', mainPageController.mainApp);
+//Autenticacion
+router.get('/login',(req, res)=>{
+  res.render('login')
 });
-router.get('/user/create',(req, res)=>{
-  res.render('user_create')
+router.post('/login',userController.loginUser)
+router.get('/signup', (req, res) => {
+  res.render('signup');
 });
-router.post('/user/create',userController.createUser)
+router.post('/signup', userController.createUser);
+router.get('/exit', userController.closeSession)
+
+//restaurant
 router.get('/restaurant/create',(req, res)=>{
   res.render('restaurant_create')
 });
 router.post('/restaurant/create',restaurantController.createRestaurant)
+router.get('/restaurants', restaurantController.showRestaurants)
+//TODO mostrar info de un restaurant
+
+//Reservacion
 router.get('/booking', restaurantController.showRestaurants);
-router.get('/booking/restaurant/:id', reservationController.createReservationGet)
-router.post('/booking/restaurant/:id', reservationController.createReservation);
-router.get('/reservation/restaurant/:idr', function(req, res) {
-  res.render('index', {
-    title: 'Este es mi sistema de reservaciones',
-    dialog: ""}
-  );
-});
-router.get('/reservation/:id/restaurant/:idr', function(req, res) {
-  res.render('index', {
-    title: 'Este es mi sistema de reservaciones',
-    dialog: ""}
-  );
-});
-router.get('/reservation/user/:idu', function(req, res) {
-  res.render('index', {
-    title: 'Este es mi sistema de reservaciones',
-    dialog: ""}
-  );
-});
-router.get('/reservation/:id/user/:idu', function(req, res) {
-  res.render('index', {
-    title: 'Este es mi sistema de reservaciones',
-    dialog: ""}
-  );
-});
+router.get('/booking/:id', requireAuth ,reservationController.createReservationGet)
+router.post('/booking/:id', requireAuth, reservationController.createReservation);
+
+
+//Comentarios
+router.get('/comment/create/:id', requireAuth, commentController.createCommentGet)
+router.post('/comment/create/:id', requireAuth, commentController.createComment)
 
 
 module.exports = router;

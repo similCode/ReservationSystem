@@ -10,13 +10,25 @@ const Reservation = sequelize.define("reservations", {
         primaryKey: true
     },
     date: {
-        type: DataTypes.DATE,
+        type: DataTypes.DATEONLY,
+        allowNull: false
+        //TODO validar que sea una fecha despues del dia de hoy con isAfter: "2011-11-05"
+    },
+    time: {
+        type: DataTypes.TIME,
         allowNull: false
     },
-    state: {
-        type: DataTypes.ENUM('Confirm', 'On Progress', 'Cancelled'),
+    people:{
+        type: DataTypes.INTEGER.UNSIGNED,
         allowNull: false
+    },
+    states: {
+        type: DataTypes.ENUM,
+        values: [ 'pending', 'confirm', 'cancelled'],
+        allowNull: false,
+        defaultValue: 'pending'
     }
+
 })
 
 
