@@ -19,7 +19,7 @@ const Reservation = sequelize.define("reservations", {
         allowNull: false
     },
     people:{
-        type: DataTypes.INTEGER.UNSIGNED,
+        type: DataTypes.INTEGER,
         allowNull: false
     },
     states: {

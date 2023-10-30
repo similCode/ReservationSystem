@@ -1,0 +1,4 @@
+NewComment:
+  $ref: "new-comment.json"
+Comment:
+  $ref: "comment.json"

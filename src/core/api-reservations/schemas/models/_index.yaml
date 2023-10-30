@@ -1,0 +1,4 @@
+NewReservation:
+  $ref: "new-reservation.json"
+Reservation:
+  $ref: "reservation.json"

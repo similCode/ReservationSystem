@@ -1,0 +1,4 @@
+NewRestaurant:
+  $ref: "new-restaurant.json"
+Restaurant:
+  $ref: "restaurant.json"
